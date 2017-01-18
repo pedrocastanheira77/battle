@@ -10,23 +10,18 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    p "in /names"
-    p params
-    p session
-    p 'now assigning session variables'
+
     session[:p1_name] = params[:p1_name]
     session[:p2_name] = params[:p2_name]
-    p session
-    p session[:p1_name]
+
     redirect '/play'
   end
 
   get '/play' do
-    p "now in /play"
-    p session
-    p session[:p1_name]
     @p1_name = session[:p1_name]
     @p2_name = session[:p2_name]
+    @p1_hp = 100
+    @p2_hp = 100
     erb(:play)
   end
 end
